@@ -6,6 +6,8 @@
 
 {% block content %}
 <h1>Проекты</h1>
+<a href="/create_project">Создать проект...</a>
+<br>
 {% for link in links %}
 <p>{{link.link | safe}}</p>
 {% endfor %}

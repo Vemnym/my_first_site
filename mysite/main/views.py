@@ -60,3 +60,20 @@ def list_projects(request):
     return render(request, "main/list_projects.html", {
         'links': links
     })
+
+
+def create_project(request):
+    if request.method == "GET":
+        return render(request, 'main/create_project.html')
+    else:
+        secret = request.POST['secret']
+        name = request.POST['name']
+        text = request.POST['text']
+
+        projects.append({
+            'id': len(projects),
+            'name': name,
+            'date': datetime.now(),
+            'text': text
+        })
+        return redirect('/list_projects')
