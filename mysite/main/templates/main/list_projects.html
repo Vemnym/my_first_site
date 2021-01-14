@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Проекты
+{% endblock %}
+
+{% block content %}
+<h1>Проекты</h1>
+{% for link in links %}
+<p>{{link.link | safe}}</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Проект - {{name}}
+{% endblock %}
+
+{% block content %}
+<h1>Проект - {{name}}</h1>
+<h2>Дата публикации - {{date}}</h2>
+<p>{{text | safe}}</p>
+{% endblock %}
