@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.conf import settings
 
-from .models import Project
+from .models import Project, Comment
 
 
 def index(request):
@@ -20,14 +20,30 @@ def contacts(request):
 
 def project(request, number_of_project):
     if number_of_project < len(Project.objects.all()) + 1:
-        return render(request, 'main/project.html', model_to_dict(Project.objects.get(id=number_of_project)))
+        dictinary = model_to_dict(Project.objects.get(id=number_of_project))
+        if request.method == "POST":
+            author = request.POST['author']
+            comment = request.POST['comment']
+
+            if author == '':
+                dictinary['error'] = 'Пустое имя'
+            elif comment == '':
+                dictinary['error'] = 'Пустой текст'
+
+            Comment(project=Project.objects.get(id=number_of_project),
+                    author=author,
+                    date=datetime.now(),
+                    comment=comment.replace("\n", "<br>")).save()
+
+        dictinary['comments'] = list(Comment.objects.filter(project=number_of_project))
+
+        return render(request, 'main/project.html', dictinary)
     else:
         return redirect('/')
 
 
 def list_projects(request):
     links = []
-    i = 0
     for i in Project.objects.all():
         text_link = "<a href = '/project/{}'>Проект - {}</a>".format(i.id, i.name)
         text_link = dict(link=text_link)

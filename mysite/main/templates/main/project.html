@@ -8,4 +8,20 @@
 <h1>Проект - {{name}}</h1>
 <h2>Дата публикации - {{date}}</h2>
 <p>{{text | safe}}</p>
+
+<p>{{error}}</p>
+<form method="POST", action="{{id}}">
+    {% csrf_token %}
+    <input type="text", name="author", placeholder="Ваше имя">
+    <br><br>
+    <textarea name="comment", placeholder="Ваше сообщение"></textarea>
+    <br><br>
+    <input type="submit", value="Опубликовать">
+</form>
+
+{% for comment in comments %}
+<p>{{comment.author}}</p>
+<p>{{comment.date}}</p>
+<p>{{comment.comment | safe}}</p>
+{% endfor %}
 {% endblock %}
