@@ -9,6 +9,7 @@
 <h2>Дата публикации - {{date}}</h2>
 <p>{{text | safe}}</p>
 
+<p>Пожалуйста оставьте свой комментарий</p>
 <p>{{error}}</p>
 <form method="POST", action="{{id}}">
     {% csrf_token %}
@@ -19,6 +20,9 @@
     <input type="submit", value="Опубликовать">
 </form>
 
+{% if comments %}
+<p>Коментарии</p>
+{% endif %}
 {% for comment in comments %}
 <p>{{comment.author}}</p>
 <p>{{comment.date}}</p>

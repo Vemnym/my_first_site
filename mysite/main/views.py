@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.conf import settings
 
-from .models import Project, Comment
+from .models import Project, Comment, Contacts
+import re
 
 
 def index(request):
@@ -15,7 +16,51 @@ def about(request):
 
 
 def contacts(request):
-    return render(request, 'main/contacts.html')
+    if request.method == "GET":
+        return render(request, 'main/contacts.html')
+    else:
+        name = request.POST['name']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        text = request.POST['text']
+
+        pattern_phone = r"^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$"
+        phone_valid = re.match(pattern_phone, phone)
+        pattern_email = r"([\w\.-]+)@([\w\.-]+)(\.[\w\.]+)"
+        email_valid = re.match(pattern_email, email)
+
+        if name == '':
+            return render(request, 'main/contacts.html', {
+                'error': 'Пустое имя'
+            })
+        if phone == '':
+            return render(request, 'main/contacts.html', {
+                'error': 'Пустой номер телефона'
+            })
+        elif not phone_valid:
+            return render(request, 'main/contacts.html', {
+                'error': 'Неправильный номер телефона'
+            })
+        if email == '':
+            return render(request, 'main/contacts.html', {
+                'error': 'Пустой email'
+            })
+        elif not email_valid:
+            return render(request, 'main/contacts.html', {
+                'error': 'Неправильный email'
+            })
+        if text == '':
+            return render(request, 'main/contacts.html', {
+                'error': 'Пустой текст'
+            })
+        Contacts(name=name,
+                 date=datetime.now(),
+                 phone=phone,
+                 email=email,
+                 text=text).save()
+        return render(request, 'main/contacts.html', {
+            'error': 'Сообщение успешно отправленно'
+        })
 
 
 def project(request, number_of_project):
