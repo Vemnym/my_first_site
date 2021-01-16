@@ -64,16 +64,19 @@ def contacts(request):
 
 
 def project(request, number_of_project):
-    if number_of_project < len(Project.objects.all()) + 1:
+    if Project.objects.get(id=number_of_project):
         dictinary = model_to_dict(Project.objects.get(id=number_of_project))
         if request.method == "POST":
+            dictinary['comments'] = list(Comment.objects.filter(project=number_of_project))
             author = request.POST['author']
             comment = request.POST['comment']
 
             if author == '':
                 dictinary['error'] = 'Пустое имя'
+                return render(request, 'main/project.html', dictinary)
             elif comment == '':
                 dictinary['error'] = 'Пустой текст'
+                return render(request, 'main/project.html', dictinary)
 
             Comment(project=Project.objects.get(id=number_of_project),
                     author=author,
@@ -97,28 +100,3 @@ def list_projects(request):
     return render(request, "main/list_projects.html", {
         'links': links
     })
-
-
-def create_project(request):
-    if request.method == "GET":
-        return render(request, 'main/create_project.html')
-    else:
-        secret = request.POST['secret']
-        name = request.POST['name']
-        text = request.POST['text']
-
-        if secret != settings.SECRET_KEY:
-            return render(request, 'main/create_project.html', {
-                'error': 'Неправильный secret key'
-            })
-        if name == '':
-            return render(request, 'main/create_project.html', {
-                'error': 'Пустое имя'
-            })
-        if text == '':
-            return render(request, 'main/create_project.html', {
-                'error': 'Пустой текст'
-            })
-
-        Project(name=name, date=datetime.now(), text=text.replace("\n", "<br>")).save()
-        return redirect('/list_projects')
