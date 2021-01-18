@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,15 +6,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/layout.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <a href="/">Главная</a>
-    <a href="/about">О бо мне</a>
-    <a href="/contacts">Контакты</a>
-    <a href="/list_projects">Проекты</a>
-
+    <aside>
+        <h1>Навигация</h1>
+        <ul>
+            <a href="/"><li><i class="fas fa-home"></i> Главная</li></a>
+            <a href="/about"><li><i class="fas fa-address-card"></i> О бо мне</li></a>
+            <a href="/contacts"><li><i class="far fa-address-book"></i> Контакты</li></a>
+            <a href="/list_projects"><li><i class="fas fa-tasks"></i> Проекты</li></a>
+        </ul>
+    </aside>
+    <main>
     {% block content %}
     {% endblock %}
+    </main>
 </body>
 </html>

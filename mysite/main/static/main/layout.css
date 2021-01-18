@@ -1,0 +1,32 @@
+body{
+    background: #B3ADB3;
+}
+aside{
+    float: left;
+    background: #736F73;
+    width: 20%;
+    height: 100vh;
+    padding: 2,5%;
+    color: #FFF7FF;
+    border-right: 5px solid #F2EBF2;
+}
+
+aside ul{list-style: none;}
+aside ul li{
+    color: #FFF7FF;
+    display: block;
+    margin-top: 20px;
+    transition: transform .6s ease;
+}
+
+aside ul li:hover, aside ul a:hover{
+    color: #FADA23;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+body img{
+    width: 80vh;
+    float: top;
+    height: 50vh;
+}

@@ -1,5 +1,4 @@
 {% extends 'main/layout.html' %}
-
 {% block title %}
 Проект - {{name}}
 {% endblock %}
@@ -20,7 +19,7 @@
     <br><br>
     <textarea name="comment", placeholder="Ваше сообщение"></textarea>
     <br><br>
-    <input type="submit", value="Опубликовать">
+    <input type="submit", value="Опубликовать" class="btn btn-warning">
 </form>
 
 {% if comments %}
