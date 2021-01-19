@@ -1,4 +1,8 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/list_projects.css' %}">
+{% endblock %}
 
 {% block title %}
 Проекты
@@ -7,6 +11,14 @@
 {% block content %}
 <h1>Проекты</h1>
 {% for link in links %}
-<p>{{link.link | safe}}</p>
+<a href="/project/{{link.id}}" class="project">
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">{{link.name}}</div>
+  <div class="card-body">
+    <h4 class="card-title">{{link.name}}</h4>
+    <p class="card-text">{{link.text}}</p>
+  </div>
+</div>
+</a>
 {% endfor %}
 {% endblock %}

@@ -1,0 +1,11 @@
+div.card, a.project{
+
+    display: inline-block;
+}
+
+div:hover, a:hover{
+    color: #FADA23;
+    text-decoration: none;
+    transform: scale(1.05);
+
+}

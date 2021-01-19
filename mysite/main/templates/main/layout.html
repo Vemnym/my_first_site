@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'main/layout.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    {% block styles %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <aside>
         <h1>Навигация</h1>
         <ul>
-            <a href="/"><li><i class="fas fa-home"></i> Главная</li></a>
-            <a href="/about"><li><i class="fas fa-address-card"></i> О бо мне</li></a>
-            <a href="/contacts"><li><i class="far fa-address-book"></i> Контакты</li></a>
-            <a href="/list_projects"><li><i class="fas fa-tasks"></i> Проекты</li></a>
+            <a href="/"><li><i class="fas fa-home"></i><span> Главная</span></li></a>
+            <a href="/about"><li><i class="fas fa-address-card"></i><span> Обо мне</span></li></a>
+            <a href="/contacts"><li><i class="far fa-address-book"></i><span> Контакты</span></li></a>
+            <a href="/list_projects"><li><i class="fas fa-tasks"></i><span> Проекты</span></li></a>
         </ul>
     </aside>
     <main>

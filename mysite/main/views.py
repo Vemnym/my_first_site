@@ -91,12 +91,6 @@ def project(request, number_of_project):
 
 
 def list_projects(request):
-    links = []
-    for i in Project.objects.all():
-        text_link = "<a href = '/project/{}'>Проект - {}</a>".format(i.id, i.name)
-        text_link = dict(link=text_link)
-        links.append(text_link)
-
     return render(request, "main/list_projects.html", {
-        'links': links
+        'links': Project.objects.all()
     })

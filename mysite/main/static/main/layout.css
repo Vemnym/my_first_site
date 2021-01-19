@@ -4,20 +4,41 @@ body{
 aside{
     float: left;
     background: #736F73;
-    width: 20%;
+    width: 45px;
     height: 100vh;
     padding: 2,5%;
     color: #FFF7FF;
     border-right: 5px solid #F2EBF2;
+    transition: all .5s;
+    position: fixed;
+
+
 }
 
-aside ul{list-style: none;}
+aside:hover{
+    width:250px;;
+}
+
+aside ul{
+    list-style: none;
+    position: fixed;
+}
 aside ul li{
     color: #FFF7FF;
-    display: block;
-    margin-top: 20px;
-    transition: transform .6s ease;
+    transition: transform 1s ease;
+    margin-left: -55px;
+	padding: 20px;
+    font-size: 25px;
 }
+
+aside h1, aside ul li span {
+    opacity: 0;
+}
+
+aside:hover h1, aside:hover ul li span {
+	transition: opacity 2s;
+	opacity: 1;
+	}
 
 aside ul li:hover, aside ul a:hover{
     color: #FADA23;
@@ -29,4 +50,8 @@ body img{
     width: 80vh;
     float: top;
     height: 50vh;
+}
+
+main {
+    text-align: center
 }
