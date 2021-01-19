@@ -11,12 +11,13 @@ aside{
     border-right: 5px solid #F2EBF2;
     transition: all .5s;
     position: fixed;
+    z-index: 999999;
 
 
 }
 
 aside:hover{
-    width:250px;;
+    width:250px;
 }
 
 aside ul{
