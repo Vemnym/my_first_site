@@ -6,5 +6,27 @@
 
 {% block content %}
 <h1>Заголовок about</h1>
-<p>текст about ^)</p>
+<div class="section">
+            <h1><span>My Skills</span></h1>
+            <ul>
+                <li>Python <br />
+                    <progress min="0" max="100" value='{{data.0}}'></progress>
+
+                </li>
+                <li>SQL <br />
+                    <progress min="0" max="100" value='{{data.1}}'></progress>
+                </li>
+                <li>HTML <br />
+                    <progress min="0" max="100" value='{{data.2}}'></progress>
+                </li>
+                <li>CSS <br />
+                    <progress min="0" max="100" value='{{data.3}}'></progress>
+                </li>
+            </ul>
+        </div>
+
+
+{% for res in result %}
+   <p>{{res}}</p>
+{% endfor%}
 {% endblock %}

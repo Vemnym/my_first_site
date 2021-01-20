@@ -1,7 +1,9 @@
+import requests
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.conf import settings
+from bs4 import BeautifulSoup
 
 from .models import Project, Comment, Contacts
 import re
@@ -12,7 +14,19 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'main/about.html')
+    response = requests.get('https://www.sololearn.com/Profile/5737049')
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    result = {}
+    j = 0
+    data = soup.find_all('div', class_='chart')
+    data = list(data)
+    res = []
+    for i in data:
+        res.append(i['data-percent'])
+    result['data'] = res
+
+    return render(request, 'main/about.html', result)
 
 
 def contacts(request):

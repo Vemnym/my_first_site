@@ -15,10 +15,12 @@
 <div class="card border-primary mb-3">
   <div class="card-header">{{link.name}}</div>
   <div class="card-body">
-    <h4 class="card-title">{{link.name}}</h4>
+    <img src="{{link.image.url}}" alt="My image">
     <p class="card-text">{{link.text}}</p>
   </div>
 </div>
 </a>
+
+
 {% endfor %}
 {% endblock %}
