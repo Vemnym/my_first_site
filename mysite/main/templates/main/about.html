@@ -1,4 +1,8 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/about.css' %}">
+{% endblock %}
 
 {% block title %}
 Название страници about
@@ -10,23 +14,26 @@
             <h1><span>My Skills</span></h1>
             <ul>
                 <li>Python <br />
-                    <progress min="0" max="100" value='{{data.0}}'></progress>
-
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{data.0}}%;"></div>
+                    </div>
                 </li>
                 <li>SQL <br />
-                    <progress min="0" max="100" value='{{data.1}}'></progress>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: {{data.1}}%;"></div>
+                    </div>
                 </li>
                 <li>HTML <br />
-                    <progress min="0" max="100" value='{{data.2}}'></progress>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{data.2}}%;"></div>
+                    </div>
                 </li>
                 <li>CSS <br />
-                    <progress min="0" max="100" value='{{data.3}}'></progress>
+                     <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{data.3}}%;"></div>
+                    </div>
                 </li>
             </ul>
         </div>
 
-
-{% for res in result %}
-   <p>{{res}}</p>
-{% endfor%}
 {% endblock %}
