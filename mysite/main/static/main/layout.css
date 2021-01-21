@@ -10,8 +10,8 @@ aside{
     color: #FFF7FF;
     border-right: 5px solid #F2EBF2;
     transition: all .5s;
-    position: fixed;
     z-index: 999999;
+    position: fixed;
 
 
 }
@@ -48,11 +48,47 @@ aside ul li:hover, aside ul a:hover{
 }
 
 body img{
-    width: 80vh;
+    max-width: 100vh;
     float: top;
-    height: 50vh;
+    max-height: 100vh;
 }
 
 main {
-    text-align: center
+    text-align: center;
+    padding-left: 45px;
+}
+
+
+@media only screen and (max-width: 1024px) {
+aside {
+    float: none;
+    width: 100%;
+    height: 45px;
+    border-right: none;
+    border-bottom: 5px solid #F2EBF2;
+
+
+}
+aside h1, aside ul li span{
+    display: none;
+}
+
+aside:hover{
+    height: 45px;
+    width: 100%;
+}
+
+aside ul li{
+    display: inline;
+    font-size: 20px;
+    margin: auto;
+    padding-left: 0px;
+
+}
+
+main{
+    padding-top: 45px;
+    padding-left: 0;
+}
+
 }
