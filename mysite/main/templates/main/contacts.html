@@ -1,26 +1,44 @@
 {% extends 'main/layout.html' %}
-
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/contacts.css' %}">
+{% endblock %}
 {% block title %}
 Контакты
 {% endblock %}
 
 {% block content %}
 <h1>Как со мной связаться</h1>
-<p>email: email@mail.com</p>
-<p>телефон: +7 999 999 99 99</p>
+<div id="contacts">
+    <p><b>email:</b> email@mail.com</p>
+    <p><b>телефон:</b> +7 999 999 99 99</p>
+</div>
+<h2>Если не смогли со мной связаться, оставьте свои контакты:</h2>
 
-<p>Если не смогли со мной связаться оставьте свои контакты:</p>
-<p>{{error}}</p>
+{% if error%}
+<div class="alert alert-dismissible alert-danger">
+  <strong>{{error}}</strong>
+</div>
+<br/>
+{% endif %}
+
+{% if success%}
+<div class="alert alert-dismissible alert-success">
+  <strong>{{success}}</strong>
+</div>
+<br/>
+{% endif %}
+
 <form method="POST" action="/contacts">
     {% csrf_token %}
-    <input type="text", name="name", placeholder="Ваше имя">
-    <br><br>
-    <input type="text", name="phone", placeholder="Номер телефона">
-    <br><br>
-    <input type="email", name="email", placeholder="email адрес">
-    <br><br>
-    <textarea name="text", placeholder="О себе"></textarea>
-    <br><br>
-    <input type="submit", value="Отправить">
+    <input type="text", name="name", placeholder="Ваше имя" class="form-control">
+    <br/>
+    <input type="text", name="phone", placeholder="Номер телефона" class="form-control">
+    <br/>
+    <input type="email", name="email", placeholder="email адрес", class="form-control">
+    <br/>
+    <textarea name="text", placeholder="О себе" class="form-control" rows="3" ></textarea>
+    <br/>
+    <input type="submit", value="Отправить" class="btn btn-primary btn-lg">
 </form>
 {% endblock %}

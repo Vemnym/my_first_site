@@ -73,7 +73,7 @@ def contacts(request):
                  email=email,
                  text=text).save()
         return render(request, 'main/contacts.html', {
-            'error': 'Сообщение успешно отправленно'
+            'success': 'Сообщение успешно отправленно'
         })
 
 
