@@ -10,6 +10,7 @@
 
 {% block content %}
 <h1>Проекты</h1>
+<div>
 {% for link in links %}
 <a href="/project/{{link.id}}" class="project">
 <div class="card border-primary mb-3">
@@ -20,7 +21,6 @@
   </div>
 </div>
 </a>
-
-
 {% endfor %}
+</div>
 {% endblock %}
