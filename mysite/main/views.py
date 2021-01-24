@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.conf import settings
 from bs4 import BeautifulSoup
+from django.core.paginator import Paginator
 
 from .models import Project, Comment, Contacts
 import re
@@ -97,7 +98,11 @@ def project(request, number_of_project):
                     date=datetime.now(),
                     comment=comment.replace("\n", "<br>")).save()
 
-        dictinary['comments'] = list(Comment.objects.filter(project=number_of_project))
+            dictinary['success'] = 'Комментарий успешно сохранен'
+
+        list_comments = Paginator(list(Comment.objects.filter(project=number_of_project)), 3)
+        page_number = request.GET.get('page')
+        dictinary['comments'] = list_comments.get_page(page_number)
 
         return render(request, 'main/project.html', dictinary)
     else:

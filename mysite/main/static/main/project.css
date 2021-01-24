@@ -1,0 +1,38 @@
+#text{
+    background: #dadada;
+    padding: 15px;
+    text-align: left;
+}
+
+form, #comments{
+    background: #dadada;
+    padding: 15px;
+
+}
+.card, .form-control{
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+}
+
+h2, h6{
+    text-align: left;
+}
+
+.page-item{
+    width:100%;
+}
+
+@media only screen and (min-width: 1024px) {
+main{
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+}
+
+}
+@media only screen and (max-width: 1024px) {
+    .card, .form-control{
+        width:100%
+}
+}

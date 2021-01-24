@@ -1,4 +1,9 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/project.css' %}">
+{% endblock %}
+
 {% block title %}
 Проект - {{name}}
 {% endblock %}
@@ -6,28 +11,84 @@
 {% block content %}
 
 <h1>Проект - {{name}}</h1>
-<h2>Дата публикации - {{date}}</h2>
+<h5>Дата публикации - {{date}}</h5>
 <img src="{{image.url}}" alt="My image">
 
-<p>{{text | safe}}</p>
+<p id="text">{{text | safe}}</p>
 
-<p>Пожалуйста оставьте свой комментарий</p>
-<p>{{error}}</p>
+<h3>Пожалуйста оставьте свой комментарий</h3>
+{% if error%}
+<div class="alert alert-dismissible alert-danger">
+  <strong>{{error}}</strong>
+</div>
+<br/>
+{% endif %}
+{% if success%}
+<div class="alert alert-dismissible alert-success">
+  <strong>{{success}}</strong>
+</div>
+<br/>
+{% endif %}
 <form method="POST", action="{{id}}">
     {% csrf_token %}
-    <input type="text", name="author", placeholder="Ваше имя">
+    <input type="text", name="author", placeholder="Ваше имя" class="form-control">
     <br><br>
-    <textarea name="comment", placeholder="Ваше сообщение"></textarea>
+    <textarea name="comment", placeholder="Ваше сообщение" class="form-control"></textarea>
     <br><br>
-    <input type="submit", value="Опубликовать" class="btn btn-warning">
+    <input type="submit", value="Опубликовать" class="btn btn-primary btn-lg">
 </form>
-
+<br/>
 {% if comments %}
-<p>Коментарии</p>
+<h3>Коментарии</h3>
 {% endif %}
 {% for comment in comments %}
-<p>{{comment.author}}</p>
-<p>{{comment.date}}</p>
-<p>{{comment.comment | safe}}</p>
+<div id="comments">
+    <div class="card border-secondary mb-3">
+      <div class="card-header"><h2>{{comment.author}} <h6 class="card-title">{{comment.date}}</h6></h2></div>
+      <div class="card-body">
+
+        <p class="card-text">{{comment.comment | safe}}</p>
+      </div>
+    </div>
+</div>
+
+
 {% endfor %}
+
+{% if comments %}
+
+<ul class="pagination">
+    {% if comments.has_previous %}
+        <li class="page-item">
+            <a href="?page=1" class="page-link">&laquo;&laquo;</a>
+        </li>
+        <li class="page-item">
+            <a href="?page={{ comments.previous_page_number }}" class="page-link">&laquo;</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">&laquo;</a>
+        </li>
+    {% endif %}
+
+    <li class="page-item active">
+        <a class="page-link" href="#">{{ comments.number }}</a>
+    </li>
+
+    {% if comments.has_next %}
+        <li class="page-item">
+            <a href="?page={{ comments.next_page_number }}" class="page-link">&raquo;</a>
+        </li>
+        <li class="page-item">
+            <a href="?page={{ comments.paginator.num_pages }}" class="page-link">&raquo;&raquo;</a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">&raquo;</a>
+        </li>
+    {% endif %}
+</ul>
+
+{% endif %}
+
 {% endblock %}
