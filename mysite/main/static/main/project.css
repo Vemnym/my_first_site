@@ -1,12 +1,14 @@
 #text{
-    background: #dadada;
     padding: 15px;
     text-align: left;
 }
 
-form, #comments{
-    background: #dadada;
-    padding: 15px;
+#text, form, #comments{
+    background:radial-gradient(ellipse closest-side,rgba(50,80,115, 0.0),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0));
 
 }
 .card, .form-control{
@@ -34,5 +36,14 @@ main{
 @media only screen and (max-width: 1024px) {
     .card, .form-control{
         width:100%
+}
+
+#text, form, #comments{
+    background:linear-gradient(to bottom,rgba(50,80,115, 0.0),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.2),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0));
+
 }
 }

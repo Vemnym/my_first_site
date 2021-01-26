@@ -11,10 +11,12 @@
 {% block content %}
 
 <h1>Проект - {{name}}</h1>
-<h5>Дата публикации - {{date}}</h5>
+<h5>Дата публикации - {{date|date:'Y-m-d'}}</h5>
 <img src="{{image.url}}" alt="My image">
 
+
 <p id="text">{{text | safe}}</p>
+
 
 <h3>Пожалуйста оставьте свой комментарий</h3>
 {% if error%}
@@ -40,22 +42,25 @@
 <br/>
 {% if comments %}
 <h3>Коментарии</h3>
-{% endif %}
-{% for comment in comments %}
+
 <div id="comments">
+{% for comment in comments %}
+
     <div class="card border-secondary mb-3">
-      <div class="card-header"><h2>{{comment.author}} <h6 class="card-title">{{comment.date}}</h6></h2></div>
+      <div class="card-header"><h2>{{comment.author}}
+          <h6 class="card-title">{{comment.date |date:"SHORT_DATE_FORMAT"}} 
+                                 {{comment.date |time:"G:i "}}</h6></h2>
+      </div>
       <div class="card-body">
 
         <p class="card-text">{{comment.comment | safe}}</p>
       </div>
     </div>
+
+{% endfor %}
 </div>
 
 
-{% endfor %}
-
-{% if comments %}
 
 <ul class="pagination">
     {% if comments.has_previous %}

@@ -19,7 +19,6 @@ def about(request):
     soup = BeautifulSoup(response.text, 'html.parser')
 
     result = {}
-    j = 0
     data = soup.find_all('div', class_='chart')
     data = list(data)
     res = []
@@ -103,6 +102,7 @@ def project(request, number_of_project):
         list_comments = Paginator(list(Comment.objects.filter(project=number_of_project)), 3)
         page_number = request.GET.get('page')
         dictinary['comments'] = list_comments.get_page(page_number)
+        dictinary['text'] = dictinary['text'].replace("\n", "<br>")
 
         return render(request, 'main/project.html', dictinary)
     else:

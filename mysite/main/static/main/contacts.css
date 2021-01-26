@@ -1,5 +1,9 @@
 form, #contacts{
-    background: #dadada;
+    background:radial-gradient(ellipse closest-side,rgba(50,80,115, 0.0),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0));
     padding: 15px;
 }
 

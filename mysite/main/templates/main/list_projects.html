@@ -17,7 +17,7 @@
   <div class="card-header">{{link.name}}</div>
   <div class="card-body">
     <img src="{{link.image.url}}" alt="My image">
-    <p class="card-text">{{link.text}}</p>
+    <p class="card-text">{{link.text | safe}}</p>
   </div>
 </div>
 </a>
