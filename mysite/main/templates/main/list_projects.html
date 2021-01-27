@@ -8,8 +8,10 @@
 Проекты
 {% endblock %}
 
+{% block name %}<h1>Проекты</h1>{% endblock %}
+
 {% block content %}
-<h1>Проекты</h1>
+
 <div>
 {% for link in links %}
 <a href="/project/{{link.id}}" class="project">

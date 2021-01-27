@@ -11,6 +11,24 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     {% block styles %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+
+    <script>
+    var smoothJumpUp = function() {
+        if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+            window.scrollBy(0,-50);
+            setTimeout(smoothJumpUp, 10);
+        }
+    }
+
+    window.onscroll = function() {
+      var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrolled > 100) {
+      	document.getElementById('top_button').style.opacity = '1';
+      } else {
+      	document.getElementById('top_button').style.opacity = '0';
+      }
+    }
+</script>
 </head>
 <body>
     <aside>
@@ -22,9 +40,15 @@
             <a href="/list_projects"><li><i class="fas fa-tasks"></i><span> Проекты</span></li></a>
         </ul>
     </aside>
+        <a name="top"></a>
+        {% block name %}{% endblock %}
     <main>
-    {% block content %}
-    {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+        <a onclick="(document.documentElement.scrollTop ? document.documentElement : document.body).scrollTop = 0;" class="btn btn-outline-primary" id="top_button">Наверх</a>
     </main>
+
+
 </body>
 </html>

@@ -7,3 +7,17 @@ div.section{
 div.section ul{
     list-style: none;
 }
+
+.logo_img{
+    height: 40px;
+}
+
+h2 a, a h2{
+    color: black;
+}
+
+@media only screen and (max-width: 1024px) {
+iframe{
+    width:100%;
+}
+}

@@ -8,11 +8,12 @@
 Проект - {{name}}
 {% endblock %}
 
+{% block name %}<h1>Проект - {{name}}</h1>{% endblock %}
+
 {% block content %}
 
-<h1>Проект - {{name}}</h1>
 <h5>Дата публикации - {{date|date:'Y-m-d'}}</h5>
-<img src="{{image.url}}" alt="My image">
+<img id="project_img" src="{{image.url}}" alt="My image">
 
 
 <p id="text">{{text | safe}}</p>

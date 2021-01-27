@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     background: #ffffff;
 }
@@ -58,6 +62,24 @@ main {
     padding-left: 45px;
 }
 
+h1{
+    background:#2196f3;
+    color: white;
+    text-align:center;
+}
+
+#top_button{
+    float:right;
+    position: fixed;
+    bottom:15px;
+    right: 15px;
+    opacity:0;
+    transition: opacity 1s;
+}
+
+
+
+
 
 @media only screen and (max-width: 1024px) {
 aside {
@@ -86,9 +108,18 @@ aside ul li{
 
 }
 
-main{
+h1, main{
     padding-top: 45px;
     padding-left: 0;
 }
+
+#top_button{
+    float:none;
+    width:100%;
+    position: relative;
+    bottom:0px;
+    right: 0px;
+}
+
 
 }
