@@ -1,12 +1,32 @@
 {% extends 'main/layout.html' %}
-
-{% block title %}
-Главная страница
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'main/index.css' %}">
 {% endblock %}
 
-{% block name %}<h1>Главная страница</h1>{% endblock %}
+{% block title %}
+Добро пожаловать
+{% endblock %}
+
+
 
 {% block content %}
 
-<p>текст</p>
+
+<div class="background-image"
+     style="background-image: url('https://images.pexels.com/photos/3913025/pexels-photo-3913025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+</div>
+
+<div class="bg-text">
+  <h2>Меня зовут Павел</h2>
+  <p>И я программист</p>
+    <span>
+        Здравствуй незнакомец.
+        <br>Я только начал развиваться как разработчик и этот сайт задумывался как результат того, что я умею.
+        <br>Как видно в дизайн я еще не умею :)
+        <br>Пожалуйста оглядись и оставь свои комментарии.
+    </span>
+</div>
+
+
 {% endblock %}

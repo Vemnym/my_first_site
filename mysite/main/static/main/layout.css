@@ -5,9 +5,17 @@ html{
 body{
     background: #ffffff;
 }
+
+h1{
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    text-align:center;
+}
 aside{
     float: left;
-    background: #2196f3;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
     width: 45px;
     height: 100vh;
     padding: 2,5%;
@@ -38,6 +46,8 @@ aside ul li{
 
 aside h1, aside ul li span {
     opacity: 0;
+    text-align:left;
+
 }
 
 aside:hover h1, aside:hover ul li span {
@@ -62,11 +72,7 @@ main {
     padding-left: 45px;
 }
 
-h1{
-    background:#2196f3;
-    color: white;
-    text-align:center;
-}
+
 
 #top_button{
     float:right;

@@ -16,8 +16,21 @@ h2 a, a h2{
     color: black;
 }
 
+.text{
+    font-size: 25px;
+    text-align:left;
+    margin-left: auto;
+    margin-right: auto;
+    width:80%;
+    background:radial-gradient(ellipse closest-side,rgba(50,80,115, 0.0),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0.1),
+                                         rgba(50,80,115, 0));
+}
 @media only screen and (max-width: 1024px) {
-iframe{
+iframe, .text{
     width:100%;
 }
+
 }
