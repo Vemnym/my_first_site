@@ -5,7 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from bs4 import BeautifulSoup
 from django.core.paginator import Paginator
-
+import json
 from .models import Project, Comment, Contacts
 import re
 
@@ -19,11 +19,13 @@ def about(request):
     soup = BeautifulSoup(response.text, 'html.parser')
 
     result = {}
-    data = soup.find_all('div', class_='chart')
+    data = soup.find_all('script')
     data = list(data)
+    data = str(data[7])[29:-10]
+    data = json.loads(data)
     res = []
-    for i in data:
-        res.append(i['data-percent'])
+    for i in data['getProfile']['coursesProgress']:
+        res.append(float(i['progress'])*100)
     result['data'] = res
 
     return render(request, 'main/about.html', result)
