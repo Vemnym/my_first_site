@@ -21,3 +21,7 @@ class Contacts(models.Model):
     phone = models.CharField(max_length=12)
     email = models.EmailField()
     text = models.TextField()
+
+
+class Progress(models.Model):
+    data = models.IntegerField(default=0)
