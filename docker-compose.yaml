@@ -27,6 +27,8 @@ services:
              python manage.py migrate"
     depends_on:
       - db
+    healthcheck:
+      timeout: 10s
 
   celery_beat:
     build: mysite/

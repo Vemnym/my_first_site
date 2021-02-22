@@ -22,6 +22,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'creating-new-objects': {
         'task': 'main.tasks.create_new_object',
-        'schedule': crontab(minute=0, hour=0)
+        'schedule': crontab(minute=30, hour=23)
     }
 }
