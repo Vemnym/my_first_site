@@ -24,4 +24,4 @@ class Contacts(models.Model):
 
 
 class Progress(models.Model):
-    data = models.IntegerField(default=0)
+    data = models.CharField(max_length=30)

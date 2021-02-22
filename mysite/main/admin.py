@@ -13,3 +13,4 @@ class CategoryComment(admin.ModelAdmin):
 admin.site.register(Project, CategoryAdmin)
 admin.site.register(Comment, CategoryComment)
 admin.site.register(Contacts, CategoryAdmin)
+admin.site.register(Progress)

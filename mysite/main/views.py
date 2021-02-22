@@ -1,12 +1,10 @@
-import requests
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 from datetime import datetime
-from django.conf import settings
-from bs4 import BeautifulSoup
+
 from django.core.paginator import Paginator
-import json
-from .models import Project, Comment, Contacts
+
+from .models import Project, Comment, Contacts, Progress
 import re
 
 
@@ -15,19 +13,7 @@ def index(request):
 
 
 def about(request):
-    response = requests.get('https://www.sololearn.com/Profile/5737049')
-    soup = BeautifulSoup(response.text, 'html.parser')
-
-    result = {}
-    data = soup.find_all('script')
-    data = list(data)
-    data = str(data[7])[29:-10]
-    data = json.loads(data)
-    res = []
-    for i in data['getProfile']['coursesProgress']:
-        res.append(float(i['progress'])*100)
-    result['data'] = res
-
+    result = {'data': Progress.objects.all()}
     return render(request, 'main/about.html', result)
 
 

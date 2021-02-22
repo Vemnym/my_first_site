@@ -1,8 +1,46 @@
-version: "3"
+version: "3.9"
 
 services:
+  rebbitmq:
+    image: "rabbitmq:latest"
+    ports:
+      - 5672:5672
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
   mysite:
     build: mysite/
     restart: always
     ports:
       - 8001:8001
+    depends_on:
+      - db
+
+  db_migrate:
+    build: mysite/
+    command: bash -c "python manage.py makemigrations &&
+             python manage.py migrate"
+    depends_on:
+      - db
+
+  celery_beat:
+    build: mysite/
+    command: "celery -A mysite beat"
+    restart: always
+    depends_on:
+      - db
+
+  celery_worker:
+    build: mysite/
+    command: "celery -A mysite worker -l INFO --pool=solo"
+    restart: always
+    depends_on:
+      - db
+
+
+
