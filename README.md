@@ -1,4 +1,12 @@
 # my_first_site
-on Django
+Мой первый сайт на Django
 
-My first project on Django is the blog about me and my projects
+В проекте использовал:
+
+    Django,
+    Docker,
+    Celery,
+    PostgreSql
+
+Посмотреть можно по ссылке: http://5.189.192.48/
+Пожалуйста не судите строго
